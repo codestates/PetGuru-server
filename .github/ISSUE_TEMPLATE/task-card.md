@@ -8,17 +8,18 @@ assignees: ''
 ---
 
 # ISSUE
-- Group: client, server, sr
-- Type: bug, feature, delete
-- Detail: fix actions from client redux
-
+- Group: client, server, sr (선택해주세요)
+- Type: bug, feature, delete (선택해주세요)
+- Detail: '커밋 메시지 형식으로 작성해주세요'
+- 
 # TODO
+
 - [ ] Job1
 - [ ] Job2
 - [ ] Job3
 
 # Estimated time
-> Pick one
+> Pick one (작업 시간 선택)
 
 `0.5h`
 `1h`
@@ -28,6 +29,7 @@ assignees: ''
 `3h`
 
 # Labels
+(우측 사이드바에서 라벨을 선택해주세요)
 - Estimated time: `E: 1h`
 - Group : `client`, `server`
 - Sprint: `Sprint__NUMBER__`
