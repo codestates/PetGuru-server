@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "DNFfkffk93",
+    "password": null,
     "database": "PetGuru",
     "host": "127.0.0.1",
     "dialect": "mysql"

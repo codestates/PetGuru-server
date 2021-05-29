@@ -1,5 +1,6 @@
 var DataTypes = require("sequelize").DataTypes;
 var _Missing_answer = require("./Missing_answer");
+var _SequelizeMeta = require("./SequelizeMeta");
 var _answer = require("./answer");
 var _missing = require("./missing");
 var _pet = require("./pet");
@@ -9,6 +10,7 @@ var _user = require("./user");
 
 function initModels(sequelize) {
   var Missing_answer = _Missing_answer(sequelize, DataTypes);
+  var SequelizeMeta = _SequelizeMeta(sequelize, DataTypes);
   var answer = _answer(sequelize, DataTypes);
   var missing = _missing(sequelize, DataTypes);
   var pet = _pet(sequelize, DataTypes);
@@ -19,6 +21,7 @@ function initModels(sequelize) {
 
   return {
     Missing_answer,
+    SequelizeMeta,
     answer,
     missing,
     pet,

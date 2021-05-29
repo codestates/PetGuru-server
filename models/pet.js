@@ -27,6 +27,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: true
     },
+    age: {
+      type: DataTypes.STRING(255),
     born_year: {
       type: "YEAR",
       allowNull: true
