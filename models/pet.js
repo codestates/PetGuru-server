@@ -41,7 +41,7 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.DATE,
       allowNull: true
     }
-  }, {
+  }, 
     sequelize,
     tableName: 'pet',
     timestamps: false,
