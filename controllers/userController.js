@@ -76,5 +76,5 @@ module.exports = {
 //       console.log(req.session)
 //       res.json({ "message": "Success post logout"})
     //   res.redirect('/');
-  }
+//   }
 };
