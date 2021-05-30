@@ -1,5 +1,5 @@
 const env = require('dotenv')
-dotenv.config()
+// dotenv.config()
 
 
 module.exports = {
@@ -25,4 +25,4 @@ module.exports = {
     dialect: "mysql"
   }
 }
-}
+
