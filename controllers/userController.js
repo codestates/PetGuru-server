@@ -71,7 +71,7 @@ module.exports = {
 
   logout: (req, res, next) => {
       req.logout();
-      console.log(req.session)
+    //   console.log(req.session)
       req.session.destroy();
       console.log(req.session)
       res.json({ "message": "Success post logout"})
