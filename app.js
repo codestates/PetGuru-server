@@ -46,6 +46,18 @@ app.use(passport.session());
 
 app.use('/user', userRouter)
 
+app.get('/auth/google',
+  // passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
+  passport.authenticate('google', { scope: ['profile', 'email'] }));
+
+app.get('/auth/google/callback', 
+  passport.authenticate('google', { failureRedirect: '/login' }),
+  function(req, res) {
+    res.redirect('/');
+  });
+
+
+
 app.listen(3000, () => {
     console.log('서버 실행')
 })
