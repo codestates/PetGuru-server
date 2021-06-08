@@ -1,13 +1,16 @@
+const express = require("express");
 const fs = require("fs");
 const https =  require("https");
 const cors = require("cors");
+const session = require("express-session");
 const cookieParser = require("cookie-parser");
 const morgan = require("morgan");
 const dotenv = require("dotenv");
 // const config = require('./config')
+
 const passport = require("passport");
 const passportConfig = require("./passport");
-const session = require("express-session");
+const db = require("./models/");
 
 const userRouter = require('./routes/users');
 const petRouter = require('./routes/pet')
@@ -17,6 +20,9 @@ const Router = require('./routes/pet')
 
 const express = require("express");
 dotenv.config(); 
+const { param } = require("./routes/users");
+const petController = require("./controllers/petController");
+dotenv.config(); //dotenv 사용?
 
 const app = express();
 
@@ -35,22 +41,44 @@ app.use(session({
   },
   secret: process.env.COOKIE_SECRET // 숨겨놔야함
   }));
+app.use(
+  session({
+    secret: process.env.COOKIE_SECRET, // 숨겨놔야함
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+      httpOnly: true, // javascript로 cookie에 접근하지 못하게 하는 옵션
+      secure: false
+    },
+  })
+);
 
 
 app.use(
     cors({
         origin: true,
         credentials: true,
-        methods: ["GET", "POST", "OPTIONS"],
+        methods: ['OPTIONS', 'GET', 'POST' ,'PUT', 'DELETE'] //슬안: 메소드 업데이트
     })
 );
 
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Controllers
+
+//user
 app.use('/user', userRouter)
 app.use('/pet', petRouter)
 app.use('/missing', missingRouter)
+
+
+
+//pet
+app.post("/pet/register", petController.register); //pet 등록
+app.get("/pet/:pet_id", petController.info) //pet 정보조회
+app.put("/pet/:id/edit", petController.edit) //pet 정보수정
+app.delete("/pet/:id/delete", petController.delete) //pet 삭제
 
 
 

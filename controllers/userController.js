@@ -1,10 +1,11 @@
 const { User } = require("../models/");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
+const dotenv = require("dotenv"); //슬안: salt 값을 env로 돌림
 
 module.exports = {
   signup: async (req, res, next) => {
-      const hashedPassword = await bcrypt.hash(req.body.password, 10);
+      const hashedPassword = await bcrypt.hash(req.body.password, process.env.SALT);
       // console.log(hashedPassword)
       try {
           const exUser = await User.findOne({
