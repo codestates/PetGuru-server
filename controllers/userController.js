@@ -70,6 +70,26 @@ module.exports = {
       })(req, res, next);
   },
 
+//   googleLogin: (req, res, next) => {
+//     passport.authenticate('google', (err, user, info) => { 
+//       if (err) { 
+//         return next(err);
+//       }
+//       if (info) { 
+//         return res.status(401).json({message: info});
+//       }
+//       return req.login(user, (loginErr) => {
+//         if (loginErr) { 
+//           console.error(loginErr);
+//           return next(loginErr);
+//         }
+//         return res.status(200).json({message: "success post login"});
+//       })
+//     })(req, res, next);
+// },
+
+
+
   logout: (req, res, next) => {
       req.logout();
     //   console.log(req.session)
