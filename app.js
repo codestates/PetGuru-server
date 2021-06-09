@@ -65,20 +65,12 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-//Controllers
 
-//user
+//Routers
 app.use('/user', userRouter)
 app.use('/pet', petRouter)
 app.use('/missing', missingRouter)
 
-
-
-//pet
-app.post("/pet/register", petController.register); //pet 등록
-app.get("/pet/:pet_id", petController.info) //pet 정보조회
-app.put("/pet/:id/edit", petController.edit) //pet 정보수정
-app.delete("/pet/:id/delete", petController.delete) //pet 삭제
 
 
 

@@ -3,6 +3,7 @@ const Sequelize = require('sequelize');
 const { pet } = require("../models/");
 
 
+//슬안
 module.exports = {
     register: async (req, res) => {
         const { sex, name, type, image_url, born_year} = req.body;
@@ -74,7 +75,9 @@ module.exports = {
             if (!count) {
              return res.status(404).send("Pet Info not found");
             }
-            res.send("Successfully deleted Pet Info");
-           });
+            else{
+                res.send("Successfully deleted Pet Info");
+            }
+        });
     }
 };
