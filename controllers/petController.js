@@ -13,6 +13,7 @@ module.exports = {
             user_id: req.session.user_id,
             created_at: new Date()
         });
+        
         if(!result){
             res.status(500).send("Pet register error");
         }
