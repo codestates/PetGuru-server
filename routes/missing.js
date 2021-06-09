@@ -11,7 +11,7 @@ router.post(
 );
 
 router.get('/posts', missingController.info);
-router.put('/posts', missingController.edit);
-router.delete('/posts', missingController.delete);
+router.put('/posts/:id', missingController.edit);
+router.delete('/posts/:id', missingController.delete);
 
 module.exports = router;
