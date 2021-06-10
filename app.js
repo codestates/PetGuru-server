@@ -14,11 +14,10 @@ const db = require("./models/");
 
 const userRouter = require('./routes/users');
 const petRouter = require('./routes/pet')
-const Router = require('./routes/pet')
+const missingRouter = require('./routes/pet')
 
 
 
-const express = require("express");
 dotenv.config(); 
 const { param } = require("./routes/users");
 const petController = require("./controllers/petController");
@@ -74,6 +73,6 @@ app.use('/missing', missingRouter)
 
 
 
-app.listen(3000, () => {
+app.listen(5000, () => {
     console.log('서버 실행')
 })

@@ -1,53 +1,28 @@
-const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('answer', {
-    id: {
-      autoIncrement: true,
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    text: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    image_url: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    video_url: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    question_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    updated_at: {
-      type: DataTypes.DATE,
-      allowNull: true
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Answer extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
     }
+  };
+  Answer.init({
+    user_id: DataTypes.INTEGER,
+    title: DataTypes.STRING,
+    contents: DataTypes.STRING,
+    image_url: DataTypes.STRING,
+    video_url: DataTypes.STRING,
+    question_id: DataTypes.INTEGER
   }, {
     sequelize,
-    tableName: 'answer',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-    ]
+    modelName: 'Answer',
   });
+  return Answer;
 };

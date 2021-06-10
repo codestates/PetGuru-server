@@ -1,53 +1,27 @@
-const Sequelize = require('sequelize');
-module.exports = function(sequelize, DataTypes) {
-  return sequelize.define('Missing_answer', {
-    id: {
-      autoIncrement: true,
-      type: DataTypes.INTEGER,
-      allowNull: false,
-      primaryKey: true
-    },
-    user_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    missing_id: {
-      type: DataTypes.INTEGER,
-      allowNull: true
-    },
-    image_url: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    video_url: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    text: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    updated_at: {
-      type: DataTypes.DATE,
-      allowNull: true
+'use strict';
+const {
+  Model
+} = require('sequelize');
+module.exports = (sequelize, DataTypes) => {
+  class Missing_answer extends Model {
+    /**
+     * Helper method for defining associations.
+     * This method is not a part of Sequelize lifecycle.
+     * The `models/index` file will call this method automatically.
+     */
+    static associate(models) {
+      // define association here
     }
+  };
+  Missing_answer.init({
+    user_id: DataTypes.INTEGER,
+    missing_id: DataTypes.INTEGER,
+    image_url: DataTypes.STRING,
+    video_url: DataTypes.STRING,
+    text: DataTypes.STRING
   }, {
     sequelize,
-    tableName: 'Missing_answer',
-    timestamps: false,
-    indexes: [
-      {
-        name: "PRIMARY",
-        unique: true,
-        using: "BTREE",
-        fields: [
-          { name: "id" },
-        ]
-      },
-    ]
+    modelName: 'Missing_answer',
   });
+  return Missing_answer;
 };
