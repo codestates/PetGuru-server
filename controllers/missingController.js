@@ -1,4 +1,5 @@
-const { missing, pet } = require("../models/");
+const Sequelize = require('sequelize');
+const { Missing, Pet } = require("../models/");
 // multer 관련 추가
 
 
@@ -48,7 +49,7 @@ module.exports = {
         missing_location,
         missing_status,
         user_id: req.session.user_id,
-        created_at: new Date()
+        created_at: Sequelize.NOW
       });
 
       res.send("success post missing pet register");
@@ -86,7 +87,7 @@ module.exports = {
       pet_id,
       missing_location,
       missing_status,
-      updated_at: new Date()
+      updated_at: Sequelize.NOW
     },
     {
       where: { id: missing_id, user_id: req.session.user_id}

@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const { pet } = require("../models/");
+const { Pet } = require("../models/");
 
 
 //슬안
@@ -9,18 +9,23 @@ module.exports = {
         const { sex, name, type, image_url, born_year} = req.body;
         
         //db에 pet 정보 저장
-        const result = await pet.create({
-            sex, name, type, image_url, born_year,
-            user_id: req.session.user_id,
-            created_at: new Date()
-        });
+        try{
+            const result = await Pet.create({
+                sex, name, type, image_url, born_year,
+                user_id: req.session.user_id,
+                created_at: Sequelize.NOW
+            });
+            
+            if(!result){
+                res.status(500).send("Pet register error");
+            }
+            else{
+                res.send("success post pet register");
+            }
+        }catch(error){
+            console.error(error);
+        };
         
-        if(!result){
-            res.status(500).send("Pet register error");
-        }
-        else{
-            res.send("success post pet register");
-        }
 
     },
 
@@ -28,7 +33,7 @@ module.exports = {
         const pet_id = req.params.pet_id;
 
         //db에서 pet 정보 조회
-        const petInfo = await pet.findAll({
+        const petInfo = await Pet.findAll({
             where: { id: pet_id, user_id: req.session.user_id }
         })
 
@@ -47,9 +52,9 @@ module.exports = {
         const pet_id = req.params.id;
 
         //db의 pet 정보 수정
-        const result = await pet.update({
+        const result = await Pet.update({
             sex, name, type, image_url, born_year,
-            updated_at: new Date()
+            updated_at: Sequelize.NOW
         },
         {
             where: { id: pet_id, user_id: req.session.user_id}
@@ -67,7 +72,7 @@ module.exports = {
         const pet_id = req.params.id;
         
         //db의 pet 정보 삭제
-        await pet.destroy({
+        await Pet.destroy({
             where: {
                 id: pet_id, user_id: req.session.user_id
             }
