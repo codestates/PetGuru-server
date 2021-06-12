@@ -1,4 +1,5 @@
 const Sequelize = require('sequelize');
+
 module.exports = function(sequelize, DataTypes) {
   return sequelize.define('missing', {
     id: {
@@ -15,19 +16,19 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    missing_location: {
+    location: {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    missing_status: {
+    status: {
       type: DataTypes.BOOLEAN,
       allowNull: true
     },
-    missing_latitude: {
+    latitude: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
-    missing_longitude: {
+    longitude: {
       type: DataTypes.INTEGER,
       allowNull: true
     },
