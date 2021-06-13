@@ -1,6 +1,7 @@
 const passport = require('passport');
 const local = require('./localStrategy.js');
 const google = require('./googleStrategy.js')
+const jwt = require('./JWTStrategy')
 // const kakao = require('/kakaoStrategy');
 const { User } = require('../models/');
 
@@ -16,4 +17,5 @@ module.exports = () => {
     });
     // local();
     google();
+    jwt();
 }

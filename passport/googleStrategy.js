@@ -18,18 +18,41 @@ module.exports = () => {
         passReqtoCallback: true,
     },
 
-    function(accessToken, refreshToken, profile, done) {
-        console.log(accessToken)
-        console.log(refreshToken)
-        console.log(profile)
- 
+    async (accessToken, refreshToken, profile, done) => {
+        console.log('googleOauth test')
+        console.log('accessToken', accessToken)
+        console.log('refreshToken', refreshToken)
+        console.log('profile', profile)
 
-        User.create({
-            user_name: profile._json.name,
-            email: profile._json.email,
-            created_at: '1234',
-            updated_at: '12345'
-        });
+        //     User.findOrCreate({where : { social_google_id: profile.id } })
+        //     .then(function (err, user) {
+        //     return done(err, user)
+        // })
+    
+
+        // User.create({
+        //     user_name: profile._json.name,
+        //     email: profile._json.email,
+        //     created_at: profile.created_at,
+        //     updated_at: profile.updated_at
+        // });
+        try {
+            const exUser = await User.findOne({
+                where: { social_google_id: profile.id}
+            });
+            if(exUser) {
+                done(null, exUser);
+            } else {
+                const newUser = await User.create({
+                  user_name: profile._json.name,
+                  email: profile._json.email,
+                });
+                done(null, newUser);
+            }
+        } catch (error) {
+            console.error(error);
+            done(error);
+        }
     },
 
 

@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const express = require('express');
+=======
+const express = require('express')
+>>>>>>> 181aa7e73c47be3505980600f7697a2fb7d85351
 const router = express.Router();
 const petController = require('../controllers/petController')
 

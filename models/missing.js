@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 'use strict';
 const {
   Model
@@ -11,6 +12,57 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+=======
+const Sequelize = require('sequelize');
+
+module.exports = function(sequelize, DataTypes) {
+  return sequelize.define('missing', {
+    id: {
+      autoIncrement: true,
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      primaryKey: true
+    },
+    user_id: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    pet_name: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    location: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    status: {
+      type: DataTypes.BOOLEAN,
+      allowNull: true
+    },
+    latitude: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    longitude: {
+      type: DataTypes.INTEGER,
+      allowNull: true
+    },
+    text: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    image_url: {
+      type: DataTypes.STRING(255),
+      allowNull: true
+    },
+    created_at: {
+      type: DataTypes.DATE,
+      allowNull: true
+    },
+    updated_at: {
+      type: DataTypes.DATE,
+      allowNull: true
+>>>>>>> 181aa7e73c47be3505980600f7697a2fb7d85351
     }
   };
   Missing.init({
