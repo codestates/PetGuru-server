@@ -29,19 +29,12 @@ module.exports = function(sequelize, DataTypes) {
     },
     age: {
       type: DataTypes.STRING(255),
+    },
     born_year: {
-      type: "YEAR",
+      type: DataTypes.STRING(255),
       allowNull: true
     },
-    created_at: {
-      type: DataTypes.DATE,
-      allowNull: true
-    },
-    updated_at: {
-      type: DataTypes.DATE,
-      allowNull: true
-    }
-  }, 
+  },{
     sequelize,
     tableName: 'pet',
     timestamps: false,

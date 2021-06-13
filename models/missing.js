@@ -12,8 +12,8 @@ module.exports = function(sequelize, DataTypes) {
       type: DataTypes.STRING(255),
       allowNull: true
     },
-    pet_id: {
-      type: DataTypes.INTEGER,
+    pet_name: {
+      type: DataTypes.STRING(255),
       allowNull: true
     },
     location: {
@@ -37,10 +37,6 @@ module.exports = function(sequelize, DataTypes) {
       allowNull: true
     },
     image_url: {
-      type: DataTypes.STRING(255),
-      allowNull: true
-    },
-    video_url: {
       type: DataTypes.STRING(255),
       allowNull: true
     },

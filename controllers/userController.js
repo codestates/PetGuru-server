@@ -1,11 +1,10 @@
 const { User } = require("../models/");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
-const dotenv = require("dotenv"); //슬안: salt 값을 env로 돌림
 
 module.exports = {
   signup: async (req, res, next) => {
-      const hashedPassword = await bcrypt.hash(req.body.password, process.env.SALT);
+      const hashedPassword = await bcrypt.hash(req.body.password, 10);
       // console.log(hashedPassword)
       try {
           const exUser = await User.findOne({
@@ -69,26 +68,6 @@ module.exports = {
         })
       })(req, res, next);
   },
-
-//   googleLogin: (req, res, next) => {
-//     passport.authenticate('google', (err, user, info) => { 
-//       if (err) { 
-//         return next(err);
-//       }
-//       if (info) { 
-//         return res.status(401).json({message: info});
-//       }
-//       return req.login(user, (loginErr) => {
-//         if (loginErr) { 
-//           console.error(loginErr);
-//           return next(loginErr);
-//         }
-//         return res.status(200).json({message: "success post login"});
-//       })
-//     })(req, res, next);
-// },
-
-
 
   logout: (req, res, next) => {
       req.logout();

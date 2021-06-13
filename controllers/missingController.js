@@ -10,12 +10,14 @@ module.exports = {
       title,
       latitude,
       longitude,
-      name,
+      pet_name,
       type,
       sex,
       location,
       status
     } = req.body;
+
+    console.log('영산님이부탁한', req.body)
 
     //등록한 동물이 pet 데이터에 있는지 확인
     // const petInfo = await pet.findAll({
@@ -24,28 +26,27 @@ module.exports = {
 
     //같은 동물로 중복 등록인지 확인
     const missingInfo = await Missing.findAll({
-      where: { pet_id: req.body.pet_id }
+      where: { pet_name: pet_name }
     });
 
-    if(!petInfo){
-      //pet 데이터에 동물이 없으면 에러
-      res.status(404).send("Could not find pet info");
-    }
-    else if(missingInfo){
-      //실종신고 중복 등록글이면 에러
-      res.status(409).send("Pet already registered as missing");
-    }
-    else{
-      const image_url = req.file.location
+    // if(!missingInfo){
+    //   //pet 데이터에 동물이 없으면 에러
+    //   res.status(404).send("Could not find missing pet info");
+    // }
+    // else if(missingInfo){
+    //   //실종신고 중복 등록글이면 에러
+    //   res.status(409).send("Pet already registered as missing");
+    // }
+     {
+      // const image_url = req.file.location
       //문제가 없으면 db에 실종신고 정보 저장
       await Missing.create({
         contents,
         title,
         latitude,
         longitude,
-        name,
+        pet_name,
         type,
-        image_url,
         sex,
         location,
         status,

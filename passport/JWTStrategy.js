@@ -4,8 +4,7 @@ const passport = require("passport");
 const passportJWT = require("passport-jwt");
 const JWTStrategy = passportJWT.Strategy;
 const ExtractJWT = passportJWT.ExtractJwt;
-
-const { Users } = require("../models");
+const { Missing } = require("../models");
 
 module.exports = () => {
   const jwtStrategyOption = {
@@ -14,7 +13,7 @@ module.exports = () => {
   };
 
   const jwtVerify = (jwtPayload, done) => {
-    return Users.findOne({ where: { id: jwtPayload.id } })
+    return Missing.findOne({ where: { id: jwtPayload.id } })
       .then((user) => {
         return done(null, user);
       })

@@ -29,11 +29,11 @@ module.exports = function(sequelize, DataTypes) {
     },
     created_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     },
     updated_at: {
       type: DataTypes.DATE,
-      allowNull: false
+      allowNull: true
     },
     mentor_auth: {
       type: DataTypes.BOOLEAN,
