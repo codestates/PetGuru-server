@@ -17,30 +17,10 @@ module.exports = {
       status
     } = req.body;
 
-    console.log('영산님이부탁한', req.body)
+    try{
 
-    //등록한 동물이 pet 데이터에 있는지 확인
-    // const petInfo = await pet.findAll({
-    //   where: { id: req.body.pet_id, user_id: req.session.user_id }
-    // });
-
-    //같은 동물로 중복 등록인지 확인
-    const missingInfo = await Missing.findAll({
-      where: { pet_name: pet_name }
-    });
-
-    // if(!missingInfo){
-    //   //pet 데이터에 동물이 없으면 에러
-    //   res.status(404).send("Could not find missing pet info");
-    // }
-    // else if(missingInfo){
-    //   //실종신고 중복 등록글이면 에러
-    //   res.status(409).send("Pet already registered as missing");
-    // }
-     {
-      // const image_url = req.file.location
-      //문제가 없으면 db에 실종신고 정보 저장
-      await Missing.create({
+      //db에 실종신고 게시글 저장
+      const result = await Missing.create({
         contents,
         title,
         latitude,
@@ -51,8 +31,51 @@ module.exports = {
         location,
         status,
       });
-      res.json({message: "success post missing pet register"});
-    }
+
+      if(!result){
+        res.status(500).send("Missing Post register error");
+      }
+      else{
+        res.send("success post pet register");
+      }
+    }catch(error){
+      console.error(error);
+  };
+
+    //등록한 동물이 pet 데이터에 있는지 확인
+    // const petInfo = await pet.findAll({
+    //   where: { id: req.body.pet_id, user_id: req.session.user_id }
+    // });
+
+    //같은 동물로 중복 등록인지 확인
+    // const missingInfo = await Missing.findAll({
+    //   where: { pet_name: pet_name }
+    // });
+
+    // if(!missingInfo){
+    //   //pet 데이터에 동물이 없으면 에러
+    //   res.status(404).send("Could not find missing pet info");
+    // }
+    // else if(missingInfo){
+    //   //실종신고 중복 등록글이면 에러
+    //   res.status(409).send("Pet already registered as missing");
+    // }
+     //{
+      // const image_url = req.file.location
+      //문제가 없으면 db에 실종신고 정보 저장
+    //   await Missing.create({
+    //     contents,
+    //     title,
+    //     latitude,
+    //     longitude,
+    //     pet_name,
+    //     type,
+    //     sex,
+    //     location,
+    //     status,
+    //   });
+    //   res.json({message: "success post missing pet register"});
+    // }
   },
 
   getList: async (req, res) => {
@@ -69,13 +92,13 @@ module.exports = {
         "name",
         "type",
         "sex",
-        "location",
-        "status",
+        "missing_location",
+        "missing_status",
       ],
       order: [["createdAt", "DESC"]],
       include: [
         {
-          model: Users,
+          model: User,
           attributes: ["id", "user_name", "email",],
         },
       ],
@@ -84,7 +107,6 @@ module.exports = {
   },
 
   getDetail: async (req, res) => {
-    //코드 작성해주세요!
     const missingInfo = await Missing.findOne({
       where: { id: req.params.id },
     });
@@ -137,7 +159,7 @@ module.exports = {
     const id = req.params.id;
     
     //db의 실종신고 정보 수정
-    const result = await missing.update({
+    const result = await Missing.update({
       contents,
       title,
       latitude,
@@ -168,7 +190,7 @@ module.exports = {
     const missing_id = req.params.id;
 
     //db의 실종신고 정보 삭제
-    await missing.destroy({
+    await Missing.destroy({
       where: {
           id: missing_id, user_id: req.session.user_id
       }
