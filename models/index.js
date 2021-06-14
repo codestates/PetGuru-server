@@ -1,10 +1,22 @@
+'use strict';
+
+const path = require("path");
 const Sequelize = require('sequelize');
 const env = process.env.NODE_ENV || 'development';
-const config = require('../config/config')[env];
+const config = require(__dirname + '/../config/config.json')[env];
 const db = {};
 
 //* 노드랑 mysql 연결
-const sequelize = new Sequelize(config.database, config.username, config.password, config);
+const sequelize = new Sequelize(
+  config.database, 
+  config.username, 
+  config.password, 
+  config.host,
+  config.port,
+  config
+);
+db.sequelize = sequelize;
+db.Sequelize = Sequelize;
 
 db.Answer = require('./answer')(sequelize, Sequelize);
 db.Missing = require('./missing')(sequelize, Sequelize);
@@ -21,8 +33,6 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-db.sequelize = sequelize;
-db.Sequelize = Sequelize;
 db.sequelize.sync({
 	alter : true
 })

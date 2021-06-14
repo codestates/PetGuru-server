@@ -11,11 +11,7 @@ const session = require("express-session");
 
 const userRouter = require('./routes/users');
 const petRouter = require('./routes/pet')
-<<<<<<< HEAD
-const missingRouter = require('./routes/pet')
-=======
 const missingRouter = require('./routes/missing')
->>>>>>> 181aa7e73c47be3505980600f7697a2fb7d85351
 
 
 
@@ -51,10 +47,6 @@ app.use(
 app.use(passport.initialize());
 app.use(passport.session());
 
-<<<<<<< HEAD
-
-//Routers
-=======
 //auth
 app.get('/auth/google',
   // passport.authenticate('google', { scope: ['https://www.googleapis.com/auth/plus.login'] }));
@@ -66,18 +58,14 @@ app.get('/auth/google/callback',
     res.redirect('/');
   });
 
->>>>>>> 181aa7e73c47be3505980600f7697a2fb7d85351
 app.use('/user', userRouter)
 app.use('/pet', petRouter)
 app.use('/missing', missingRouter)
 
 
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> 181aa7e73c47be3505980600f7697a2fb7d85351
 
 app.listen(5000, () => {
     console.log('서버 실행')
