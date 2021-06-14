@@ -1,5 +1,5 @@
-require("dotenv").config();
-
+// require("dotenv").config();
+const dotenv = require("dotenv");
 const passport = require("passport");
 const passportJWT = require("passport-jwt");
 const JWTStrategy = passportJWT.Strategy;

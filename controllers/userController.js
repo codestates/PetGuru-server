@@ -1,6 +1,7 @@
 const { User } = require("../models/");
 const bcrypt = require("bcrypt");
 const passport = require("passport");
+const dotenv = require("dotenv");
 
 dotenv.config(); //dotenv 사용
 
