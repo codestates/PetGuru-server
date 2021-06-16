@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 const { Missing, Users } = require("../models/");
-//슬안: missing 테이블 업데이트 내용 반영 완료
+//슬안: missing 테이블 변경 내용 반영 완료
 // multer 관련 추가
 
 
