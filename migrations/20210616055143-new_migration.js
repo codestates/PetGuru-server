@@ -1,4 +1,5 @@
 'use strict';
+//missing 테이블에 missing_date 컬럼 추가
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
