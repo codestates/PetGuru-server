@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const { Missing, Users } = require("../models/");
+//슬안: missing 테이블 변경 내용 반영 완료
 // multer 관련 추가
 
 
@@ -14,7 +15,8 @@ module.exports = {
       type,
       sex,
       location,
-      status
+      status,
+      missing_date
     } = req.body;
 
     try{
@@ -30,6 +32,7 @@ module.exports = {
         sex,
         location,
         status,
+        missing_date
       });
 
       if(!result){
@@ -92,8 +95,9 @@ module.exports = {
         "name",
         "type",
         "sex",
-        "missing_location",
-        "missing_status",
+        "location",
+        "status",
+        "missing_date"
       ],
       order: [["createdAt", "DESC"]],
       include: [
@@ -134,7 +138,8 @@ module.exports = {
         type: missingInfo.type,
         sex: missingInfo.sex,
         location: missingInfo.location,
-        status: missingInfo.status
+        status: missingInfo.status,
+        missing_date: missingInfo.missing_date
       });
     } else {
       res.status(401).json({ message: "invaild missingid" });
@@ -155,6 +160,7 @@ module.exports = {
       sex,
       location,
       status,
+      missing_date
     } = req.body
     const id = req.params.id;
     
@@ -170,6 +176,7 @@ module.exports = {
       sex,
       location,
       status,
+      missing_date,
       updated_at: Sequelize.NOW
     },
     {
