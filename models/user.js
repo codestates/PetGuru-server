@@ -11,20 +11,6 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Pet,{
-        foreignKey: 'user_id',
-        sourceKey: 'id'
-      });
-
-      User.hasMany(models.Missing,{
-        foreignKey: 'user_id',
-        sourceKey: 'id'
-      });
-
-      User.hasMany(models.Missing_answer,{
-        foreignKey: 'user_id',
-        sourceKey: 'id'
-      });
     }
   };
   User.init({
