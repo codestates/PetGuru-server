@@ -1,5 +1,6 @@
 const Sequelize = require('sequelize');
 const { Missing } = require("../models/");
+//슬안
 
 module.exports = async (req, res) => {
   const missingpetinfo = await Missing.findAll({
