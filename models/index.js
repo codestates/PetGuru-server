@@ -33,9 +33,9 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-// db.sequelize.sync({
-// 	alter : true
-// })
+db.sequelize.sync({
+	alter : true
+})
 
 
 //model association 설정

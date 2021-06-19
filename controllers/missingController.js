@@ -33,7 +33,8 @@ module.exports = {
         sex,
         location,
         status,
-        missing_date
+        missing_date,
+        born_year
       });
 
       if(!result){
@@ -120,6 +121,7 @@ module.exports = {
       res.status(200).json({
         contents: missingInfo.contents,
         born_year: missingInfo.born_year,
+        pet_name: missingInfo.pet_name,
         latitude: missingInfo.latitude,
         longitude: missingInfo.longtitude,
         image_url: missingInfo.image_url,
@@ -149,7 +151,8 @@ module.exports = {
       sex,
       location,
       status,
-      missing_date
+      missing_date,
+      pet_name
     } = req.body
     const id = req.params.id;
     
@@ -166,6 +169,7 @@ module.exports = {
       location,
       status,
       missing_date,
+      pet_name,
       updated_at: Sequelize.NOW
     },
     {
