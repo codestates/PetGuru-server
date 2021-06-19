@@ -84,20 +84,20 @@ module.exports = {
 
   getList: async (req, res) => {
     //승준
+    console.log(Missing)
 
-    //미싱 테이블에 있는 모든 데이터를
     const missingData = await Missing.findAll({
       attributes: [
-        contents,
-        latitude,
-        longitude,
-        pet_name,
-        type,
-        sex,
-        location,
-        status,
-        missing_date,
-        born_year,
+        "contents",
+        "latitude",
+        "longitude",
+        "pet_name",
+        "type",
+        "sex",
+        "location",
+        "status",
+        "missing_date",
+        "born_year",
       ],
       order: [["createdAt", "DESC"]],
       // include: [
@@ -118,19 +118,8 @@ module.exports = {
     // DB에 missing Id에 맞는 정보가 있을 때
     if (missingInfo) {
       res.status(200).json({
-        title: petInfo.title,
-        petname: petInfo.petname,
-        area: petInfo.area,
-        sex: petInfo.sex,
-        missingDate: petInfo.missingDate,
-        description: petInfo.description,
-        species: petInfo.species,
-        reward: petInfo.reward,
-        images: getImg,
-        createdAt: petInfo.createdAt,
-
         contents: missingInfo.contents,
-        title: missingInfo.title,
+        born_year: missingInfo.born_year,
         latitude: missingInfo.latitude,
         longitude: missingInfo.longtitude,
         image_url: missingInfo.image_url,
@@ -151,7 +140,7 @@ module.exports = {
     //슬안 작성
     const {
       contents,
-      title,
+      born_year,
       latitude,
       longitude,
       image_url,
@@ -167,7 +156,7 @@ module.exports = {
     //db의 실종신고 정보 수정
     const result = await Missing.update({
       contents,
-      title,
+      born_year,
       latitude,
       longitude,
       image_url,
@@ -180,7 +169,9 @@ module.exports = {
       updated_at: Sequelize.NOW
     },
     {
-      where: { id, user_id: req.session.user_id}
+      where: { id, 
+        // user_id: req.session.user_id
+      }
     });
 
     if (!result || result.includes(0)){
@@ -199,7 +190,8 @@ module.exports = {
     //db의 실종신고 정보 삭제
     await Missing.destroy({
       where: {
-          id: missing_id, user_id: req.session.user_id
+          id: missing_id, 
+          // user_id: req.session.user_id
       }
     }).then(count => {
         if (!count) {

@@ -63,11 +63,6 @@ app.use('/user', userRouter)
 app.use('/pet', petRouter)
 app.use('/missing', missingRouter)
 
-
-
-
-
-
 app.listen(3000, () => {
     console.log('서버 실행')
 })
