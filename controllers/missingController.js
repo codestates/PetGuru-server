@@ -16,7 +16,8 @@ module.exports = {
       sex,
       location,
       status,
-      missing_date
+      missing_date,
+      born_year
     } = req.body;
 
     try{
@@ -33,7 +34,8 @@ module.exports = {
         sex,
         location,
         status,
-        missing_date
+        missing_date,
+        born_year
       });
 
       if(!result){
