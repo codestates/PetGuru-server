@@ -15,15 +15,17 @@ module.exports = (sequelize, DataTypes) => {
   };
   Missing.init({
     user_id: DataTypes.INTEGER,
-    pet_id: DataTypes.INTEGER,
-    missing_location: DataTypes.STRING,
-    missing_status: DataTypes.BOOLEAN,
-    missing_latitude: DataTypes.STRING,
-    missing_longitude: DataTypes.STRING,
-    title: DataTypes.STRING,
+    pet_name: DataTypes.STRING,
+    type: DataTypes.STRING,
+    sex: DataTypes.STRING,
+    missing_date: DataTypes.STRING,
+    born_year: DataTypes.STRING,
+    location: DataTypes.STRING,
+    status: DataTypes.BOOLEAN,
+    latitude: DataTypes.STRING,
+    longitude: DataTypes.STRING,
     contents: DataTypes.STRING,
     image_url: DataTypes.STRING,
-    video_url: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Missing',
