@@ -8,7 +8,7 @@ const missingAnswerController = require('../controllers/missingAnswerController'
 
 router.post(
     '/posts', 
-    // passport.authenticate('jwt', { session: false }),
+    //passport.authenticate('jwt', { session: false }),
     // upload.single("img"),
     missingController.register,
 );
@@ -18,8 +18,8 @@ router.get('/posts', missingController.getList);
 router.get('/posts/:id', missingController.getDetail)
 
 //슬안 코드
-router.put('/posts', missingController.edit);
-router.delete('/posts', missingController.delete);
+router.put('/posts/:id', missingController.edit);
+router.delete('/posts/:id', missingController.delete);
 
 
 //슬안 - missing comment 관련 코드 연결
