@@ -68,6 +68,6 @@ app.use('/missing', missingRouter)
 
 
 
-app.listen(5000, () => {
+app.listen(3000, () => {
     console.log('서버 실행')
 })
