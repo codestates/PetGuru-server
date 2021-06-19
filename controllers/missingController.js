@@ -6,9 +6,8 @@ const { Missing, Users } = require("../models/");
 
 module.exports = {
   register:  async (req, res) => {
-    const { 
+    const {
       contents,
-      title,
       latitude,
       longitude,
       pet_name,
@@ -16,7 +15,8 @@ module.exports = {
       sex,
       location,
       status,
-      missing_date
+      missing_date,
+      born_year,
     } = req.body;
 
     try{
@@ -25,7 +25,7 @@ module.exports = {
       const result = await Missing.create({
         user_id: req.session.user_id,
         contents,
-        title,
+        born_year,
         latitude,
         longitude,
         pet_name,
@@ -88,25 +88,24 @@ module.exports = {
     //미싱 테이블에 있는 모든 데이터를
     const missingData = await Missing.findAll({
       attributes: [
-        "contents",
-        "title",
-        "latitude",
-        "longitude",
-        "image_url",
-        "name",
-        "type",
-        "sex",
-        "location",
-        "status",
-        "missing_date"
+        contents,
+        latitude,
+        longitude,
+        pet_name,
+        type,
+        sex,
+        location,
+        status,
+        missing_date,
+        born_year,
       ],
       order: [["createdAt", "DESC"]],
-      include: [
-        {
-          model: User,
-          attributes: ["id", "user_name", "email",],
-        },
-      ],
+      // include: [
+      //   {
+      //     model: User,
+      //     attributes: ["id", "user_name", "email",],
+      //   },
+      // ],
     });
     res.status(200).json({ list: missingData });
   },
