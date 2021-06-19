@@ -23,6 +23,7 @@ module.exports = {
 
       //db에 실종신고 게시글 저장
       const result = await Missing.create({
+        user_id: req.session.user_id,
         contents,
         title,
         latitude,

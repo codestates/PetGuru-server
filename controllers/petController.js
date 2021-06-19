@@ -34,7 +34,9 @@ module.exports = {
 
         //db에서 pet 정보 조회
         const petInfo = await Pet.findAll({
-            where: { id: pet_id, user_id: req.session.user_id }
+            where: { id: pet_id, 
+                //user_id: req.session.user_id 
+            }
         })
 
         if(!petInfo) {
@@ -57,7 +59,9 @@ module.exports = {
             updated_at: Sequelize.NOW
         },
         {
-            where: { id: pet_id, user_id: req.session.user_id}
+            where: { id: pet_id, 
+                //user_id: req.session.user_id
+            }
         });
 
         if (!result || result.includes(0)){
@@ -74,7 +78,8 @@ module.exports = {
         //db의 pet 정보 삭제
         await Pet.destroy({
             where: {
-                id: pet_id, user_id: req.session.user_id
+                id: pet_id, 
+                //user_id: req.session.user_id
             }
         }).then(count => {
             if (!count) {
