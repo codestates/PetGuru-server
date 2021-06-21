@@ -41,7 +41,7 @@ app.use(
     cors({
         origin: true,
         credentials: true,
-        methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE"], //methods 업데이트
+        methods: ["GET", "POST", "OPTIONS", "PUT", "DELETE", "HEAD"], //methods 업데이트
     })
 );
 

@@ -25,6 +25,7 @@ module.exports = {
       const result = await Missing.create({
         user_id: req.session.user_id,
         contents,
+        image_url: req.file.location, //받아온 이미지 S3 링크
         born_year,
         latitude,
         longitude,
@@ -90,6 +91,7 @@ module.exports = {
     const missingData = await Missing.findAll({
       attributes: [
         "contents",
+        "image_url",
         "latitude",
         "longitude",
         "pet_name",
@@ -145,7 +147,6 @@ module.exports = {
       born_year,
       latitude,
       longitude,
-      image_url,
       name,
       type,
       sex,
@@ -162,7 +163,7 @@ module.exports = {
       born_year,
       latitude,
       longitude,
-      image_url,
+      image_url: req.file.location, //받아온 이미지 S3 링크,
       name,
       type,
       sex,
