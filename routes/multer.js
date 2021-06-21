@@ -10,17 +10,21 @@ const s3 = new AWS.S3({
     region: process.env.REGION, //노출주의
 });
 
-const upload = multerS3({ 
-    s3: s3,
-    bucket: 'petguru-client',
-    contentType: multerS3.AUTO_CONTENT_TYPE, 
-    acl: 'public-read',
-    metadata: function (req, file, cb) {
-        cb(null, { fieldName: file.fieldname }) 
-    },
-    key: function (req, file, cb) { 
-        cb(null, `uploads/${Date.now()}_${file.originalname}`)
-    },
+//슬안: upload 부분 수정
+const upload = multer({ 
+    storage: multerS3({
+        s3: s3,
+        bucket: 'petguru-client',
+        contentType: multerS3.AUTO_CONTENT_TYPE, 
+        acl: 'public-read',
+        metadata: function (req, file, cb) {
+            cb(null, { fieldName: file.fieldname }) 
+        },
+        key: function (req, file, cb) { 
+            cb(null, `uploads/${Date.now()}_${file.originalname}`)
+        },
+    }),
+    
 })
 
 module.exports = { s3, upload };

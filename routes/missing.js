@@ -9,7 +9,7 @@ const missingAnswerController = require('../controllers/missingAnswerController'
 router.post(
     '/posts', 
     //passport.authenticate('jwt', { session: false }),
-    // upload.single("img"),
+    upload.single("img"),
     missingController.register,
 );
 
