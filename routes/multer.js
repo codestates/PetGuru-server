@@ -16,7 +16,7 @@ const upload = multer({
         s3: s3,
         bucket: 'petguru-client',
         contentType: multerS3.AUTO_CONTENT_TYPE, 
-        acl: 'public-read',
+        acl: 'bucket-owner-full-control',
         metadata: function (req, file, cb) {
             cb(null, { fieldName: file.fieldname }) 
         },
