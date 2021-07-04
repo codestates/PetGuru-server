@@ -22,7 +22,7 @@ module.exports = {
       const result = await Missing.create({
         user_id: req.session.user_id,
         contents,
-        image_url: req.file.location, //받아온 이미지 S3 링크
+        //image_url: req.file.location, //받아온 이미지 S3 링크
         born_year,
         latitude,
         longitude,
@@ -104,35 +104,43 @@ module.exports = {
     } = req.body
     
     const id = req.params.id;
-    
-    //db의 실종신고 정보 수정
-    const result = await Missing.update({
-      contents,
-      born_year,
-      latitude,
-      longitude,
-      image_url: req.file.location, //받아온 이미지 S3 링크,
-      name,
-      type,
-      sex,
-      location,
-      status,
-      missing_date,
-      pet_name,
-      updated_at: Sequelize.NOW
-    },
-    {
-      where: { id, 
-        // user_id: req.session.user_id
-      }
-    });
 
-    if (!result || result.includes(0)){
-      res.status(500).send("Missing post edit error");
+    try{
+
+      //db의 실종신고 정보 수정
+      const result = await Missing.update({
+        contents,
+        born_year,
+        latitude,
+        longitude,
+        //image_url: req.file.location, //받아온 이미지 S3 링크,
+        name,
+        type,
+        sex,
+        location,
+        status,
+        missing_date,
+        pet_name,
+        updated_at: Sequelize.NOW
+      },
+      {
+        where: { id, 
+          //user_id: req.session.user_id
+        }
+      });
+      
+
+      if (!result || result.includes(0)){
+        res.status(500).send("Missing post edit error");
+        console.log(result)
+      }
+      else {
+          res.send("Success put missing pet info edit")
+      }
+    }catch(error){
+      console.error(error);
     }
-    else {
-        res.send("Success put missing pet info edit")
-    }
+    
 
   },
 
