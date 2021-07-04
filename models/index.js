@@ -18,6 +18,7 @@ const sequelize = new Sequelize(
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
+
 db.Answer = require('./answer')(sequelize, Sequelize);
 db.Missing = require('./missing')(sequelize, Sequelize);
 db.MissingAnswer = require('./missing_answer')(sequelize, Sequelize);
@@ -33,9 +34,9 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
-db.sequelize.sync({
-	alter : true
-})
+// db.sequelize.sync({
+// 	alter : true
+// })
 
 
 //model association 설정
