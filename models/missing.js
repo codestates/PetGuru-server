@@ -20,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
     sex: DataTypes.STRING,
     missing_date: DataTypes.STRING,
     born_year: DataTypes.STRING,
-    location: DataTypes.STRING,
+    missing_location: DataTypes.STRING,
     status: DataTypes.BOOLEAN,
     latitude: DataTypes.STRING,
     longitude: DataTypes.STRING,
