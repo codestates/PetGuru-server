@@ -3,16 +3,24 @@ const { Missing, Users } = require("../models/");
 //슬안: missing 테이블 변경 내용 반영 완료
 module.exports = {
   image: async (req, res) =>{
+    try{
+      let imageRegister = req.files.reduce((acc, file) => {
+        const fileObj = {
+          image_url: file.location   //받아온 이미지 S3 링크
+        };
+        acc.push(fileObj);
+        return acc;
+      }, []);
+  
+      return res.json({
+        success: true,
+        image: imageRegister
+      });
 
-    let imageRegister = req.files.reduce((acc, file) => {
-      const fileObj = {
-        image_url: file.location   //받아온 이미지 S3 링크
-      };
-      acc.push(fileObj);
-      return acc;
-    }, []);
-
-    res.send(imageRegister);
+    }catch(error){
+        console.error(error);
+    };
+    
   },
 
   register:  async (req, res) => {
