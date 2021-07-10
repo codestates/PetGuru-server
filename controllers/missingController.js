@@ -83,7 +83,7 @@ module.exports = {
         // where: { id: lastId },
         limit: 10,
         include: [{
-          model: User
+          model: Users
         }]
       });
       res.status(200).json({ list: missingData });
