@@ -25,7 +25,7 @@ router.delete('/posts/:id', missingController.delete);
 //슬안 - missing comment 관련 코드 연결
 router.post('/comments/:id', missingAnswerController.register); //missing comment 등록
 router.get('/comments', missingAnswerController.info); //missing comment 가져오기
-router.put('/comments/:id', missingAnswerController.edit) //missing comment 수정
+router.put('/comments/:id', upload.single("img"),missingAnswerController.edit) //missing comment 수정
 router.delete('/comments/:id', missingAnswerController.delete) //missing comment 삭제
 
 
