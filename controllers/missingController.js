@@ -22,7 +22,7 @@ module.exports = {
       const result = await Missing.create({
         user_id: req.session.user_id,
         contents,
-        //image_url: req.file.location, //받아온 이미지 S3 링크
+        image_url: imageRegister,
         born_year,
         latitude,
         longitude,
@@ -34,6 +34,14 @@ module.exports = {
         missing_date,
         born_year
       });
+
+      let imageRegister = req.files.reduce((acc, file) => {
+        const fileObj = {
+          image_url: file.location   //받아온 이미지 S3 링크
+        };
+        acc.push(fileObj);
+        return acc;
+      }, []);
 
       if(!result){
         res.status(500).send("Missing Post register error");
@@ -113,7 +121,7 @@ module.exports = {
         born_year,
         latitude,
         longitude,
-        //image_url: req.file.location, //받아온 이미지 S3 링크,
+        image_url: imageRegister, 
         name,
         type,
         sex,
@@ -128,6 +136,14 @@ module.exports = {
           //user_id: req.session.user_id
         }
       });
+
+      let imageRegister = req.files.reduce((acc, file) => {
+        const fileObj = {
+          image_url: file.location //받아온 이미지 S3 링크
+        };
+        acc.push(fileObj);
+        return acc;
+      }, []);
       
 
       if (!result || result.includes(0)){
