@@ -2,9 +2,23 @@ const Sequelize = require('sequelize');
 const { Missing, Users } = require("../models/");
 //슬안: missing 테이블 변경 내용 반영 완료
 module.exports = {
+  image: async (req, res) =>{
+
+    let imageRegister = req.files.reduce((acc, file) => {
+      const fileObj = {
+        image_url: file.location   //받아온 이미지 S3 링크
+      };
+      acc.push(fileObj);
+      return acc;
+    }, []);
+
+    res.send(imageRegister);
+  },
+
   register:  async (req, res) => {
     const {
       contents,
+      image_url,
       latitude,
       longitude,
       pet_name,
@@ -22,7 +36,7 @@ module.exports = {
       const result = await Missing.create({
         user_id: req.session.user_id,
         contents,
-        image_url: imageRegister,
+        image_url,
         born_year,
         latitude,
         longitude,
@@ -34,14 +48,6 @@ module.exports = {
         missing_date,
         born_year
       });
-
-      let imageRegister = req.files.reduce((acc, file) => {
-        const fileObj = {
-          image_url: file.location   //받아온 이미지 S3 링크
-        };
-        acc.push(fileObj);
-        return acc;
-      }, []);
 
       if(!result){
         res.status(500).send("Missing Post register error");
@@ -99,6 +105,7 @@ module.exports = {
   edit: async (req, res) => {
     const {
       contents,
+      image_url,
       born_year,
       latitude,
       longitude,
@@ -121,7 +128,7 @@ module.exports = {
         born_year,
         latitude,
         longitude,
-        image_url: imageRegister, 
+        image_url,
         name,
         type,
         sex,
@@ -137,14 +144,6 @@ module.exports = {
         }
       });
 
-      let imageRegister = req.files.reduce((acc, file) => {
-        const fileObj = {
-          image_url: file.location //받아온 이미지 S3 링크
-        };
-        acc.push(fileObj);
-        return acc;
-      }, []);
-      
 
       if (!result || result.includes(0)){
         res.status(500).send("Missing post edit error");
