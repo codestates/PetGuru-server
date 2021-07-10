@@ -14,7 +14,7 @@ router.post(
 
 router.post(
     '/posts/image', 
-    upload.array("img"),
+    upload.array("image"),
     missingController.image,
 );
 
