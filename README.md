@@ -59,7 +59,7 @@ Did you lost your animals?
 
 # Project Members
 
-|  Name  | Position |  Work  |         Email          |
+|  Name  | Position |  Role  |         Email          |
 | :----: | :--: | :----: | :---------------------: |
 | Gwangseok Kim | Team Leader | Front-end | dreaming.seok@gmail.com |
 | Youngsan Son | Team Member | Front-end | yeongsan.dev@gmail.com  |
